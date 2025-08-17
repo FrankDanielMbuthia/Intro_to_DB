@@ -43,14 +43,16 @@ CREATE TABLE IF NOT EXISTS Orders (
     CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
--- CREATE ORDERDETAILS TABLE
-CREATE TABLE IF NOT EXISTS OrderDetails (
+
+-- CREATE ORDER_DETAILS TABLE
+CREATE TABLE IF NOT EXISTS Order_Details (
     order_detail_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
     book_id INT NOT NULL,
-    quantity INT NOT NULL,
+    quantity DOUBLE NOT NULL,
     unit_price DECIMAL(10,2) NOT NULL,
     CONSTRAINT fk_od_order FOREIGN KEY (order_id) REFERENCES Orders(order_id),
     CONSTRAINT fk_od_book FOREIGN KEY (book_id) REFERENCES Books(book_id),
     CONSTRAINT uq_order_book UNIQUE (order_id, book_id)
 );
+
